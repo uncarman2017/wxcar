@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kxcar.wxcar.db.dao.OrderPOMapper" >
+  <resultMap id="BaseResultMap" type="com.kxcar.wxcar.db.model.OrderPO" >
+    <id column="OrderID" property="orderid" jdbcType="BIGINT" />
+    <result column="DriverName" property="drivername" jdbcType="NVARCHAR" />
+    <result column="CustomerMobile" property="customermobile" jdbcType="VARCHAR" />
+    <result column="DriverMobile" property="drivermobile" jdbcType="VARCHAR" />
+    <result column="UseTime" property="usetime" jdbcType="TIMESTAMP" />
+    <result column="Remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="ProductType" property="producttype" jdbcType="NVARCHAR" />
+    <result column="VehicleLevel" property="vehiclelevel" jdbcType="NVARCHAR" />
+    <result column="Price" property="price" jdbcType="DOUBLE" />
+    <result column="DepartLocation" property="departlocation" jdbcType="NVARCHAR" />
+    <result column="ArriveLocation" property="arrivelocation" jdbcType="NVARCHAR" />
+    <result column="AddressDetail" property="addressdetail" jdbcType="NVARCHAR" />
+    <result column="CarLiscence" property="carliscence" jdbcType="VARCHAR" />
+    <result column="OrderStatus" property="orderstatus" jdbcType="VARCHAR" />
+    <result column="DataChange_CreateTime" property="datachangeCreatetime" jdbcType="TIMESTAMP" />
+    <result column="DataChange_LastTime" property="datachangeLasttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OrderID, DriverName, CustomerMobile, DriverMobile, UseTime, Remark, ProductType, 
+    VehicleLevel, Price, DepartLocation, ArriveLocation, AddressDetail, CarLiscence, 
+    OrderStatus, DataChange_CreateTime, DataChange_LastTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kxcar.wxcar.db.model.OrderPOCondition" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from [order](nolock)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from [order](nolock)
+    where OrderID = #{orderid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from [order]
+    where OrderID = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kxcar.wxcar.db.model.OrderPOCondition" >
+    delete from [order]
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="orderid" parameterType="com.kxcar.wxcar.db.model.OrderPO" >
+    insert into [Order] (DriverName, CustomerMobile,
+      DriverMobile, UseTime, Remark, 
+      ProductType, VehicleLevel, Price, 
+      DepartLocation, ArriveLocation, AddressDetail, 
+      CarLiscence, OrderStatus, DataChange_CreateTime, 
+      DataChange_LastTime)
+    values (#{drivername,jdbcType=NVARCHAR}, #{customermobile,jdbcType=VARCHAR},
+      #{drivermobile,jdbcType=VARCHAR}, #{usetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=NVARCHAR}, 
+      #{producttype,jdbcType=NVARCHAR}, #{vehiclelevel,jdbcType=NVARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{departlocation,jdbcType=NVARCHAR}, #{arrivelocation,jdbcType=NVARCHAR}, #{addressdetail,jdbcType=NVARCHAR}, 
+      #{carliscence,jdbcType=VARCHAR}, #{orderstatus,jdbcType=VARCHAR}, #{datachangeCreatetime,jdbcType=TIMESTAMP}, 
+      #{datachangeLasttime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="orderid" parameterType="com.kxcar.wxcar.db.model.OrderPO" >
+    insert into Order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drivername != null" >
+        DriverName,
+      </if>
+      <if test="customermobile != null" >
+        CustomerMobile,
+      </if>
+      <if test="drivermobile != null" >
+        DriverMobile,
+      </if>
+      <if test="usetime != null" >
+        UseTime,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="producttype != null" >
+        ProductType,
+      </if>
+      <if test="vehiclelevel != null" >
+        VehicleLevel,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="departlocation != null" >
+        DepartLocation,
+      </if>
+      <if test="arrivelocation != null" >
+        ArriveLocation,
+      </if>
+      <if test="addressdetail != null" >
+        AddressDetail,
+      </if>
+      <if test="carliscence != null" >
+        CarLiscence,
+      </if>
+      <if test="orderstatus != null" >
+        OrderStatus,
+      </if>
+      <if test="datachangeCreatetime != null" >
+        DataChange_CreateTime,
+      </if>
+      <if test="datachangeLasttime != null" >
+        DataChange_LastTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drivername != null" >
+        #{drivername,jdbcType=NVARCHAR},
+      </if>
+      <if test="customermobile != null" >
+        #{customermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="drivermobile != null" >
+        #{drivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="usetime != null" >
+        #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="producttype != null" >
+        #{producttype,jdbcType=NVARCHAR},
+      </if>
+      <if test="vehiclelevel != null" >
+        #{vehiclelevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="departlocation != null" >
+        #{departlocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="arrivelocation != null" >
+        #{arrivelocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="addressdetail != null" >
+        #{addressdetail,jdbcType=NVARCHAR},
+      </if>
+      <if test="carliscence != null" >
+        #{carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstatus != null" >
+        #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="datachangeCreatetime != null" >
+        #{datachangeCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datachangeLasttime != null" >
+        #{datachangeLasttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kxcar.wxcar.db.model.OrderPOCondition" resultType="java.lang.Integer" >
+    select count(*) from [order](nolock)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update [Order]
+    <set >
+      <if test="record.drivername != null" >
+        DriverName = #{record.drivername,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.customermobile != null" >
+        CustomerMobile = #{record.customermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drivermobile != null" >
+        DriverMobile = #{record.drivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usetime != null" >
+        UseTime = #{record.usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.producttype != null" >
+        ProductType = #{record.producttype,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.vehiclelevel != null" >
+        VehicleLevel = #{record.vehiclelevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.price != null" >
+        Price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.departlocation != null" >
+        DepartLocation = #{record.departlocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.arrivelocation != null" >
+        ArriveLocation = #{record.arrivelocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.addressdetail != null" >
+        AddressDetail = #{record.addressdetail,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.carliscence != null" >
+        CarLiscence = #{record.carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderstatus != null" >
+        OrderStatus = #{record.orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datachangeCreatetime != null" >
+        DataChange_CreateTime = #{record.datachangeCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.datachangeLasttime != null" >
+        DataChange_LastTime = #{record.datachangeLasttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update [Order]
+    set DriverName = #{record.drivername,jdbcType=NVARCHAR},
+      CustomerMobile = #{record.customermobile,jdbcType=VARCHAR},
+      DriverMobile = #{record.drivermobile,jdbcType=VARCHAR},
+      UseTime = #{record.usetime,jdbcType=TIMESTAMP},
+      Remark = #{record.remark,jdbcType=NVARCHAR},
+      ProductType = #{record.producttype,jdbcType=NVARCHAR},
+      VehicleLevel = #{record.vehiclelevel,jdbcType=NVARCHAR},
+      Price = #{record.price,jdbcType=DOUBLE},
+      DepartLocation = #{record.departlocation,jdbcType=NVARCHAR},
+      ArriveLocation = #{record.arrivelocation,jdbcType=NVARCHAR},
+      AddressDetail = #{record.addressdetail,jdbcType=NVARCHAR},
+      CarLiscence = #{record.carliscence,jdbcType=VARCHAR},
+      OrderStatus = #{record.orderstatus,jdbcType=VARCHAR},
+      DataChange_CreateTime = #{record.datachangeCreatetime,jdbcType=TIMESTAMP},
+      DataChange_LastTime = #{record.datachangeLasttime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kxcar.wxcar.db.model.OrderPO" >
+    update [Order]
+    <set >
+      <if test="drivername != null" >
+        DriverName = #{drivername,jdbcType=NVARCHAR},
+      </if>
+      <if test="customermobile != null" >
+        CustomerMobile = #{customermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="drivermobile != null" >
+        DriverMobile = #{drivermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="usetime != null" >
+        UseTime = #{usetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="producttype != null" >
+        ProductType = #{producttype,jdbcType=NVARCHAR},
+      </if>
+      <if test="vehiclelevel != null" >
+        VehicleLevel = #{vehiclelevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="price != null" >
+        Price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="departlocation != null" >
+        DepartLocation = #{departlocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="arrivelocation != null" >
+        ArriveLocation = #{arrivelocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="addressdetail != null" >
+        AddressDetail = #{addressdetail,jdbcType=NVARCHAR},
+      </if>
+      <if test="carliscence != null" >
+        CarLiscence = #{carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstatus != null" >
+        OrderStatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="datachangeCreatetime != null" >
+        DataChange_CreateTime = #{datachangeCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datachangeLasttime != null" >
+        DataChange_LastTime = #{datachangeLasttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where OrderID = #{orderid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kxcar.wxcar.db.model.OrderPO" >
+    update [Order]
+    set DriverName = #{drivername,jdbcType=NVARCHAR},
+      CustomerMobile = #{customermobile,jdbcType=VARCHAR},
+      DriverMobile = #{drivermobile,jdbcType=VARCHAR},
+      UseTime = #{usetime,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      ProductType = #{producttype,jdbcType=NVARCHAR},
+      VehicleLevel = #{vehiclelevel,jdbcType=NVARCHAR},
+      Price = #{price,jdbcType=DOUBLE},
+      DepartLocation = #{departlocation,jdbcType=NVARCHAR},
+      ArriveLocation = #{arrivelocation,jdbcType=NVARCHAR},
+      AddressDetail = #{addressdetail,jdbcType=NVARCHAR},
+      CarLiscence = #{carliscence,jdbcType=VARCHAR},
+      OrderStatus = #{orderstatus,jdbcType=VARCHAR},
+      DataChange_CreateTime = #{datachangeCreatetime,jdbcType=TIMESTAMP},
+      DataChange_LastTime = #{datachangeLasttime,jdbcType=TIMESTAMP}
+    where OrderID = #{orderid,jdbcType=BIGINT}
+  </update>
+
+  <!--扩展SQL实现-->
+
+  <select id="inquireOrderList" resultMap="BaseResultMap">
+    select top 10
+     <include refid="Base_Column_List" />
+    from
+    (select row_number() over(order by OrderId) as RowNumber,* from [order] nolock) A
+    WHERE RowNumber>(#{pageNo}-1)*10
+    <if test="orderId > 0">
+      AND OrderID = #{orderId,jdbcType=BIGINT}
+    </if>
+    <if test="customerMobile != null and customerMobile != ''">
+      AND CustomerMobile = #{customerMobile,jdbcType=VARCHAR}
+    </if>
+    <if test="driverMobile != null and driverMobile != ''">
+      AND DriverMobile = #{driverMobile,jdbcType=VARCHAR}
+    </if>
+      AND UseTime between #{beginTime} AND #{endTime}
+      ORDER BY UseTime DESC
+  </select>
+
+  <select id="getOrderListByDate" resultMap="BaseResultMap">
+    select top 10
+    <include refid="Base_Column_List" />
+    from
+    (select row_number() over(order by OrderId) as RowNumber,* from [order] nolock) A
+    WHERE RowNumber>(#{pageNo}-1)*10
+    AND UseTime between #{beginTime} AND #{endTime}
+    ORDER BY UseTime
+  </select>
+
+  <select id="getSubmittedOrderListByDate" resultMap="BaseResultMap">
+    select top 10
+    <include refid="Base_Column_List" />
+    from
+    (select row_number() over(order by OrderId) as RowNumber,* from [order] nolock) A
+    WHERE RowNumber>(#{pageNo}-1)*10
+    AND UseTime between #{beginTime} AND #{endTime} AND OrderStatus='Submitted'
+    ORDER BY UseTime
+  </select>
+
+  <select id="getMyOrderListByDate" resultMap="BaseResultMap">
+    select top 10
+    <include refid="Base_Column_List" />
+    from
+    (select row_number() over(order by OrderId) as RowNumber,* from [order] nolock) A
+    WHERE RowNumber>(#{pageNo}-1)*10
+    AND DriverMobile=#{mobile} and UseTime between #{beginTime} AND #{endTime}
+    <if test="orderStatus != null and orderStatus != '' and orderStatus != 'all'">
+      AND LOWER(OrderStatus) = LOWER(#{orderStatus,jdbcType=VARCHAR})
+    </if>
+    ORDER BY UseTime
+  </select>
+
+  <update id="catchOrder" parameterType="map">
+    update [order]
+    set OrderStatus='pending',DataChange_LastTime=getdate(),DriverMobile=#{driver.mobile},
+    CarLiscence=#{driver.carliscence},DriverName=#{driver.name}
+    WHERE OrderId=#{orderID}
+  </update>
+
+  <update id="cancelOrder">
+    update [order]
+    set OrderStatus='cancelled',DataChange_LastTime=getdate()
+    WHERE OrderId=#{orderID}
+  </update>
+
+  <update id="completeOrder">
+    update [order]
+    set OrderStatus='completed',DataChange_LastTime=getdate()
+    WHERE OrderId=#{orderID}
+  </update>
+
+  <update id="delegateOrder">
+    update [order]
+    set OrderStatus='submitted',DataChange_LastTime=getdate(),DriverMobile='',CarLiscence=''
+    WHERE OrderId=#{orderID}
+  </update>
+
+  <update id="expireOrder">
+    update [order]
+    set OrderStatus='expired',DataChange_LastTime=getdate()
+    WHERE OrderId=#{orderID}
+  </update>
+  <!--扩展SQL实现结束-->
+</mapper>

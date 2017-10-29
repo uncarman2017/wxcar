@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Slidebars Dev Page</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/slidebars.min.css">
+
+    <script type="text/javascript" src="../assets/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/slidebars.min.js"></script>
+</head>
+
+<body>
+<div canvas="container">
+    <h1>Slidebars Dev Page</h1>
+
+    <p>You'd need to open the console to view the results of some of these tests.</p>
+
+    <h4>Left Slidebar Controls</h4>
+
+    <p>
+        <button class="js-open-left-slidebar">Open left Slidebar</button>
+        <button class="js-close-left-slidebar">Close left Slidebar</button>
+        <button class="js-toggle-left-slidebar">Toggle left Slidebar</button>
+    </p>
+
+    <!--<h4>Right Slidebar Controls</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-open-right-slidebar">Open right Slidebar</button>-->
+        <!--<button class="js-close-right-slidebar">Close right Slidebar</button>-->
+        <!--<button class="js-toggle-right-slidebar">Toggle right Slidebar</button>-->
+    <!--</p>-->
+
+    <!--<h4>Top Slidebar Controls</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-open-top-slidebar">Open top Slidebar</button>-->
+        <!--<button class="js-close-top-slidebar">Close top Slidebar</button>-->
+        <!--<button class="js-toggle-top-slidebar">Toggle top Slidebar</button>-->
+    <!--</p>-->
+
+    <!--<h4>Bottom Slidebar Controls</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-open-bottom-slidebar">Open bottom Slidebar</button>-->
+        <!--<button class="js-close-bottom-slidebar">Close bottom Slidebar</button>-->
+        <!--<button class="js-toggle-bottom-slidebar">Toggle bottom Slidebar</button>-->
+    <!--</p>-->
+
+    <!--<h4>Other Controls</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-close-any-slidebar">Close any Slidebar</button>-->
+    <!--</p>-->
+
+    <!--<h4>Initialization, Exit and CSS Reset</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-initialize-slidebars">Initialize Slidebars</button>-->
+        <!--<button class="js-exit-slidebars">Exit Slidebars</button>-->
+        <!--<button class="js-reset-slidebars-css">Reset Slidebars CSS</button>-->
+    <!--</p>-->
+
+    <!--<h4>Is and Get</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-is-active">Is Slidebars active?</button>-->
+        <!--<button class="js-is-active-slidebar">Is Slidebar with id active?</button>-->
+        <!--<button class="js-get-active-slidebar">Get id of active Slidebar</button>-->
+        <!--<button class="js-get-all-slidebars">Get all Slidebar id's</button>-->
+        <!--<button class="js-get-slidebar">Get Slidebar by id</button>-->
+    <!--</p>-->
+
+    <!--<h4>Callbacks</h4>-->
+
+    <!--<p>-->
+        <!--<button class="js-init-callback">Init callback</button>-->
+        <!--<button class="js-exit-callback">Exit callback</button>-->
+        <!--<button class="js-css-callback">CSS callback</button>-->
+        <!--<button class="js-open-callback">Open callback</button>-->
+        <!--<button class="js-close-callback">Close callback</button>-->
+        <!--<button class="js-toggle-callback">Toggle callback</button>-->
+    <!--</p>-->
+</div>
+
+<div off-canvas="slidebar-1 left reveal">
+    <p>Slidebar with id 'slidebar-1' on the left side and reveal style.</p>
+</div>
+
+<!--<div off-canvas="slidebar-2 right shift">-->
+    <!--<p>Slidebar with id 'slidebar-2' on the right side and shift style.</p>-->
+<!--</div>-->
+
+<!--<div off-canvas="slidebar-3 top push">-->
+    <!--<p>Slidebar with id 'slidebar-3' on the top and push style.</p>-->
+<!--</div>-->
+
+<!--<div off-canvas="slidebar-4 bottom overlay">-->
+    <!--<p>Slidebar with id 'slidebar-4' on the bottom and overlay style.</p>-->
+<!--</div>-->
+
+<script type="text/javascript">
+    (function ($) {
+        // Create a new instance of Slidebars
+        var controller = new slidebars();
+
+        // Events
+//        $(controller.events).on('init', function () {
+//            console.log('Init event');
+//        });
+//
+//        $(controller.events).on('exit', function () {
+//            console.log('Exit event');
+//        });
+//
+//        $(controller.events).on('css', function () {
+//            console.log('CSS event');
+//        });
+//
+//        $(controller.events).on('opening', function (event, id) {
+//            console.log('Opening event of slidebar with id ' + id);
+//        });
+//
+//        $(controller.events).on('opened', function (event, id) {
+//            console.log('Opened event of slidebar with id ' + id);
+//        });
+//
+//        $(controller.events).on('closing', function (event, id) {
+//            console.log('Closing event of slidebar with id ' + id);
+//        });
+//
+//        $(controller.events).on('closed', function (event, id) {
+//            console.log('Closed event of slidebar with id ' + id);
+//        });
+
+        // Initialize Slidebars
+        controller.init();
+
+        // Left Slidebar controls
+        $('.js-open-left-slidebar').on('click', function (event) {
+            event.stopPropagation();
+            controller.open('slidebar-1');
+        });
+
+        $('.js-close-left-slidebar').on('click', function (event) {
+            event.stopPropagation();
+            controller.close('slidebar-1');
+        });
+
+        $('.js-toggle-left-slidebar').on('click', function (event) {
+            event.stopPropagation();
+            controller.toggle('slidebar-1');
+        });
+
+        // Right Slidebar controls
+//        $('.js-open-right-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.open('slidebar-2');
+//        });
+//
+//        $('.js-close-right-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.close('slidebar-2');
+//        });
+//
+//        $('.js-toggle-right-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.toggle('slidebar-2');
+//        });
+//
+//        // Top Slidebar controls
+//        $('.js-open-top-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.open('slidebar-3');
+//        });
+//
+//        $('.js-close-top-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.close('slidebar-3');
+//        });
+//
+//        $('.js-toggle-top-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.toggle('slidebar-3');
+//        });
+//
+//        // Bottom Slidebar controls
+//        $('.js-open-bottom-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.open('slidebar-4');
+//        });
+//
+//        $('.js-close-bottom-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.close('slidebar-4');
+//        });
+//
+//        $('.js-toggle-bottom-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.toggle('slidebar-4');
+//        });
+
+        // Close any
+//        $(controller.events).on('opened', function () {
+//            $('[canvas="container"]').addClass('js-close-any-slidebar');
+//        });
+//
+//        $(controller.events).on('closed', function () {
+//            $('[canvas="container"]').removeClass('js-close-any-slidebar');
+//        });
+//
+//        $('body').on('click', '.js-close-any-slidebar', function (event) {
+//            event.stopPropagation();
+//            controller.close();
+//        });
+
+        // Initilize, exit and css reset
+//        $('.js-initialize-slidebars').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.init();
+//        });
+//
+//        $('.js-exit-slidebars').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.exit();
+//        });
+//
+//        $('.js-reset-slidebars-css').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.css();
+//        });
+
+//        // Is and get
+//        $('.js-is-active').on('click', function (event) {
+//            event.stopPropagation();
+//            console.log(controller.isActive());
+//        });
+//
+//        $('.js-is-active-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            var id = prompt('Enter a Slidebar id');
+//            console.log(controller.isActiveSlidebar(id));
+//        });
+//
+//        $('.js-get-active-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            console.log(controller.getActiveSlidebar());
+//        });
+//
+//        $('.js-get-all-slidebars').on('click', function (event) {
+//            event.stopPropagation();
+//            console.log(controller.getSlidebars());
+//
+//        });
+//
+//        $('.js-get-slidebar').on('click', function (event) {
+//            event.stopPropagation();
+//            var id = prompt('Enter a Slidebar id');
+//            console.log(controller.getSlidebar(id));
+//        });
+//
+//        // Callbacks
+//        $('.js-init-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.init(function () {
+//                console.log('Init callback');
+//            });
+//        });
+//
+//        $('.js-exit-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.exit(function () {
+//                console.log('Exit callback');
+//            });
+//        });
+//
+//        $('.js-css-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.css(function () {
+//                console.log('CSS callback');
+//            });
+//        });
+//
+//        $('.js-open-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.open('slidebar-1', function () {
+//                console.log('Open callback');
+//            });
+//        });
+//
+//        $('.js-close-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.close(function () {
+//                console.log('Close callback');
+//            });
+//        });
+//
+//        $('.js-toggle-callback').on('click', function (event) {
+//            event.stopPropagation();
+//            controller.toggle('slidebar-1', function () {
+//                console.log('Toggle callback');
+//            });
+//        });
+    })(jQuery);
+</script>
+
+</body>
+
+
+</html>

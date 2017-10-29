@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>订单详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="../assets/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<form role="form" style="margin-outside: 10px">
+    <nav class='navbar navbar-default navbar-fixed-top'>
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-10"><label>订单明细</label></div>
+                <div class="col-xs-2"><span class="glyphicon glyphicon-home"
+                                            onclick="location.href='index.html'"></span></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="panel-body" style="margin-top: 35px">
+
+
+        <div class="form-group">
+            <label for="selDriverName">司机姓名</label>
+            <select class="form-control" id="selDriverName" placeholder="Driver Name">
+                <option>张益达</option>
+                <option>庄宇翔</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtCustomerMobile">客人手机</label>
+            <input type="text" class="form-control" id="txtCustomerMobile" placeholder="客人手机号码">
+        </div>
+        <div class="form-group">
+            <label for="txtDriverMobile">司机手机</label>
+            <input type="text" class="form-control" id="txtDriverMobile" placeholder="司机手机号码">
+        </div>
+        <div class="form-group">
+            <label for="txtUseTime1">用车时间</label>
+            <input type="datetime-local" class="form-control" id="txtUseTime1" placeholder="格式:2016-12-25 12:00">
+        </div>
+        <div class="form-group">
+            <label for="txtRemark">预订产品</label>
+            <input type="text" class="form-control" id="txtRemark" placeholder="预订产品备注">
+        </div>
+        <div class="form-group">
+            <label for="txtProductType">产品类型</label>
+            <input type="text" class="form-control" id="txtProductType" placeholder="输入产品类型如国内接机">
+        </div>
+        <div class="form-group">
+            <label for="selVehicleLevel">车型</label>
+            <select class="form-control" id="selVehicleLevel" placeholder="车辆等级如经济型">
+                <option>经济型</option>
+                <option>舒适型</option>
+                <option>商务型</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtDepartLocation">出发地点</label>
+            <input type="text" class="form-control" id="txtDepartLocation" placeholder="出发地点">
+        </div>
+
+        <div class="form-group">
+            <label for="txtArriveLocation">送达地点</label>
+            <input type="text" class="form-control" id="txtArriveLocation" placeholder="到达地点">
+        </div>
+
+        <div class="form-group">
+            <label for="txtAddressDetail">详细地点</label>
+            <input type="text" class="form-control" id="txtAddressDetail" placeholder="详细地点">
+        </div>
+
+        <div class="form-group">
+            <label for="txtCarLiscence">车牌</label>
+            <input type="text" class="form-control" id="txtCarLiscence" placeholder="汽车牌照">
+        </div>
+
+        <div class="form-group">
+            <label for="txtCarLiscence">订单状态</label>
+            <select class="form-control" id="selOrderStatus" placeholder="订单状态">
+                <option value="submitted">新建</option>
+                <option value="pending">进行中</option>
+                <option value="completed">完成</option>
+                <option value="cancelled">撤消</option>
+
+
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="button" style="width:100%" class="btn btn-primary">更新</button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="button" style="width:100%" class="btn btn-success"
+                            onclick="location.href='admin_orderlist.html'">返回
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <div class="panel-footer">
+        <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="btn-group dropup">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        后台管理
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="admin_createorder.html">制单</a></li>
+                        <li><a href="admin_driverlist.html">司机名录</a></li>
+                        <li><a href="admin_orderlist.html">订单查询</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='login.html';">登录
+                    </button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        司机功能
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="orderlist.html">抢单</a></li>
+                        <li><a href="myorderlist.html">我的订单</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+</form>
+</body>
+</html>

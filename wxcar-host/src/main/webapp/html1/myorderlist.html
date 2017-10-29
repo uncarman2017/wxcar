@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>我的订单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/pullToRefresh.css">
+    <script type="text/javascript" src="../assets/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/js/iscroll.js"></script>
+    <script type="text/javascript" src="../assets/js/pullToRefresh.min.js"></script>
+
+</head>
+<body>
+<form role="form" style="margin-outside: 10px">
+    <nav class='navbar navbar-default navbar-fixed-top'>
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-10"><label>我的订单</label></div>
+                <div class="col-xs-2"><span class="glyphicon glyphicon-home"
+                                            onclick="location.href='index.html'"></span></div>
+            </div>
+
+        </div>
+
+        <div class="btn-group" role="group" aria-label="..." style="margin-left: 10px;width: 100%">
+
+            <div class="btn-group" role="group" >
+                <select id="selOrderStatus" class="form-control">
+                    <option value="All">全部状态</option>
+                    <option value="Submitted">已下达</option>
+                    <option value="Pending">进行中</option>
+                    <option value="Completed">完成</option>
+                    <option value="Cancelled">取消</option>
+                    <option value="Expired">过期</option>
+                </select>
+            </div>
+            <div class="btn-group" role="group"></div>
+            <div class="btn-group" role="group">
+                <select id="selDateRange" class="form-control">
+                    <option value="All">全部时间段</option>
+                    <option value="Today">今天的订单</option>
+                    <option value="RecentThreeDays">最近三天的订单</option>
+                    <option value="RecentOneWeek">最近一周的订单</option>
+                    <option value="RecentOneMonth">最近一个月的订单</option>
+                </select>
+
+            </div>
+        </div>
+
+    </nav>
+
+
+
+
+    <div  id="wrapper" class="panel-body" style="margin-top: 70px">
+
+        <ul>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">2</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">3</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-danger">取消</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">4</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">5</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">6</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-primary">完成</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">7</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-primary">完成</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">8</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">9</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+            <li class="row" style="border-bottom-style: ridge">
+                <div class="col-xs-8">
+                    <div>订单编号: <span name="spOrderId" class="label label-success">10</span></div>
+                    <div>乘客手机：<a href=”tel://110 ”>13023228090</a></div>
+                    <div>用车时间：<span>2016年12月25日</span><span class="label label-danger">12:00</span></div>
+                    <div>出发地点：西藏南路来福士广场</div>
+                    <div>到达地点：浦东软件园1号楼</div>
+                    <div>详细地址：上海市浦东新区福山路196号</div>
+                    <div>价格：<span class="label label-primary">180.00</span></div>
+                    <div>[机票特权]上海-专车接机服务（经济型）</div>
+                    <div>订单状态：<span class="label label-success">进行中</span></div>
+
+                </div>
+                <div class="col-xs-4" style="vertical-align: middle;margin-top: 20px">
+                    <p><button class="btn btn-primary btn-lg">完成
+                    </button></p>
+
+                    <p><button class="btn btn-warning btn-lg">改派
+                    </button></p>
+
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="panel-footer">
+            <div class="btn-group dropup">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        后台管理
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="admin_createorder.html">制单</a></li>
+                        <li><a href="admin_driverlist.html">司机名录</a></li>
+                        <li><a href="admin_orderlist.html">订单查询</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-block" onclick="location.href='login.html';">登录
+                    </button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        司机功能
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="orderlist.html">抢单</a></li>
+                        <li><a href="myorderlist.html">我的订单</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success"  onclick="location.href='orderlist.html'">返回
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+</form>
+
+<script type="text/javascript">
+    refresher.init({
+        id: "wrapper",//<------------------------------------------------------------------------------------┐
+        pullDownAction: refresh,
+        pullUpAction: load
+    });
+    var generatedCount = 0;
+    function refresh() {
+        setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+            var el, li, i;
+            el = document.querySelector("#wrapper ul");
+
+            wrapper.refresh();
+
+
+        }, 1000);
+
+    }
+
+    function load() {
+        setTimeout(function () {// <-- Simulate network congestion, remove setTimeout from production!
+            var el, li, i;
+            el = document.querySelector("#wrapper ul");
+            for (i = 0; i < 2; i++) {
+                li = document.createElement('li');
+                li.appendChild(document.createTextNode('async row ' + (++generatedCount)));
+                el.appendChild(li, el.childNodes[0]);
+            }
+            wrapper.refresh();
+            /****remember to refresh after action completed！！！   ---id.refresh(); --- ****/
+//            for (var i = 0; i < document.querySelectorAll("#wrapper ul li").length; i++) {
+//                document.querySelectorAll("#wrapper ul li")[i].colorfulBg();
+//            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>

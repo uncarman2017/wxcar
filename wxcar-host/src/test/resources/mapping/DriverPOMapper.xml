@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kxcar.wxcar.db.dao.DriverPOMapper" >
+  <resultMap id="BaseResultMap" type="com.kxcar.wxcar.db.model.DriverPO" >
+    <id column="DriverID" property="driverid" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="NVARCHAR" />
+    <result column="CarLiscence" property="carliscence" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="DriverType" property="driverType" jdbcType="INTEGER" />
+    <result column="DriverStatus" property="driverStatus" jdbcType="INTEGER" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DriverID, Name, CarLiscence, Mobile, Pwd, Remark,DriverType,DriverStatus
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kxcar.wxcar.db.model.DriverPOCondition" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from Driver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Driver
+    where DriverID = #{driverid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Driver
+    where DriverID = #{driverid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kxcar.wxcar.db.model.DriverPOCondition" >
+    delete from Driver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="driverid" parameterType="com.kxcar.wxcar.db.model.DriverPO" >
+    insert into Driver (Name, CarLiscence, Mobile, Pwd, Remark,DriverType,DriverStatus)
+    values (#{name,jdbcType=NVARCHAR}, #{carliscence,jdbcType=VARCHAR},
+      #{mobile,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{remark,jdbcType=NVARCHAR},#{driverType,jdbcType=INTEGER},#{driverStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="driverid" parameterType="com.kxcar.wxcar.db.model.DriverPO" >
+    insert into Driver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="carliscence != null" >
+        CarLiscence,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="pwd != null" >
+        Pwd,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="driverType > 0" >
+        DriverType,
+      </if>
+      <if test="driverStatus >= 0" >
+        DriverStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="carliscence != null" >
+        #{carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverType > 0" >
+        #{driverType,jdbcType=INTEGER},
+      </if>
+      <if test="driverStatus > 0" >
+        #{driverStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kxcar.wxcar.db.model.DriverPOCondition" resultType="java.lang.Integer" >
+    select count(*) from Driver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Driver
+    <set >
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.carliscence != null" >
+        CarLiscence = #{record.carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        Pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.driverType > 0" >
+        DriverType = #{record.driverType,jdbcType=INTEGER},
+      </if>
+      <if test="record.driverStatus > 0" >
+        DriverType = #{record.driverStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Driver
+    set Name = #{record.name,jdbcType=NVARCHAR},
+      CarLiscence = #{record.carliscence,jdbcType=VARCHAR},
+      Mobile = #{record.mobile,jdbcType=VARCHAR},
+      Pwd = #{record.pwd,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=NVARCHAR},
+      DriverType=#{record.driverType,jdbcType=INTEGER},
+      DriverStatus=#{record.driverStatus,jdbcType=INTEGER},
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kxcar.wxcar.db.model.DriverPO" >
+    update Driver
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="carliscence != null" >
+        CarLiscence = #{carliscence,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        Pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="driverType > 0" >
+        DriverType = #{driverType,jdbcType=INTEGER},
+      </if>
+      <if test="driverStatus > 0" >
+        DriverStatus = #{driverStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where DriverID = #{driverid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kxcar.wxcar.db.model.DriverPO" >
+    update Driver
+    set Name = #{name,jdbcType=NVARCHAR},
+      CarLiscence = #{carliscence,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Pwd = #{pwd,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      DriverType = #{driverType,jdbcType=INTEGER},
+      DriverStatus = #{driverStatus,jdbcType=INTEGER}
+    where DriverID = #{driverid,jdbcType=INTEGER}
+  </update>
+
+<!--扩展SQL实现-->
+  <select id="getDriver" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from driver(nolock) WHERE Mobile= #{mobile,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getDriverByPwd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from driver(nolock) WHERE Mobile= #{mobile,jdbcType=VARCHAR} AND Pwd=#{pwd,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getAllDrivers" resultMap="BaseResultMap">
+    select top 10
+    <include refid="Base_Column_List" />
+    from (select row_number() over(order by driverId) as rownumber,* from Driver nolock) A
+    WHERE RowNumber > (#{pageNo}-1)*10
+  </select>
+
+ <!--扩展SQL实现结束-->
+</mapper>

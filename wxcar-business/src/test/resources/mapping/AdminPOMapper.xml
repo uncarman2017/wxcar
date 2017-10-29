@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kxcar.wxcar.db.dao.AdminPOMapper" >
+  <resultMap id="BaseResultMap" type="com.kxcar.wxcar.db.model.AdminPO" >
+    <id column="AdminID" property="adminid" jdbcType="INTEGER" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Pwd" property="pwd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AdminID, Mobile, Pwd
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kxcar.wxcar.db.model.AdminPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from Admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Admin
+    where AdminID = #{adminid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Admin
+    where AdminID = #{adminid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kxcar.wxcar.db.model.AdminPOExample" >
+    delete from Admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="adminid" parameterType="com.kxcar.wxcar.db.model.AdminPO" >
+    insert into Admin (Mobile, Pwd) values (#{mobile,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="adminid" parameterType="com.kxcar.wxcar.db.model.AdminPO" >
+    insert into Admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="pwd != null" >
+        Pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kxcar.wxcar.db.model.AdminPOExample" resultType="java.lang.Integer" >
+    select count(*) from Admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Admin
+    <set >
+      <if test="record.mobile != null" >
+        Mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        Pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Admin
+    set Mobile = #{record.mobile,jdbcType=VARCHAR},
+      Pwd = #{record.pwd,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kxcar.wxcar.db.model.AdminPO" >
+    update Admin
+    <set >
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        Pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AdminID = #{adminid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kxcar.wxcar.db.model.AdminPO" >
+    update Admin
+    set Mobile = #{mobile,jdbcType=VARCHAR},
+      Pwd = #{pwd,jdbcType=VARCHAR}
+    where AdminID = #{adminid,jdbcType=INTEGER}
+  </update>
+
+  <!--扩展SQL实现-->
+  <select id="getAdmin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin(nolock) WHERE Mobile= #{mobile,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getAdminByPwd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin(nolock) WHERE Mobile= #{mobile,jdbcType=VARCHAR} AND Pwd=#{pwd,jdbcType=VARCHAR}
+  </select>
+
+  <!--扩展SQL实现结束-->
+
+</mapper>
